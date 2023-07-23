@@ -1,6 +1,10 @@
 # TGSThief
 I think a lot of people have seen the project https://github.com/foxlox/GIUDA . It is an interesting way to get the TGS of a user whose logon session is just present on the computer. The problem is that its code is written in Pascal (the last time I wrote in Pascal was at school), so I had to rewrite the project in C++. 
 
+## How to use
+Just run the tool and select the desired logon session! The tool will automatically escalate privileges and request a TGS:
+![изображение](https://github.com/MzHmO/TGSThief/assets/92790655/ed847df4-d95f-48d5-8071-dafea3b86676)
+
 
 ## Advantages
 I consider the following to be certain advantages of my project:
