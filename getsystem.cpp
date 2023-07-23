@@ -3,7 +3,7 @@
 
 bool EnablePrivilege(PCWSTR privName, bool enable) {
 	HANDLE hToken;
-	if (!::OpenProcessToken(::GetCurrentProcess(), TOKEN_ALL_ACCESS, &hToken)) {
+	if (!::OpenProcessToken(::GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken)) {
 		std::cout << "[-] OpenProcessToken Failed: " << GetLastError() << std::endl;
 		return false;
 	}
@@ -101,7 +101,7 @@ DWORD ImpersonateSystem() {
 		return 1;
 	}
 
-	HANDLE procHandle = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, systemPID);
+	HANDLE procHandle = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, systemPID);
 	DWORD dw = 0;
 	dw = ::GetLastError();
 	if (dw != 0) {
