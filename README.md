@@ -27,7 +27,7 @@ Additionally, I've added a Test function that you can use to verify that the han
 
 
 ## Why don't you just dump TGT?
-Modern SIEMs and EDRs know how to detect a Pass The Ticket attack when a TGT ticket is passed in. 
+Modern SIEMs know how to detect a Pass The Ticket attack when a TGT ticket is passed in. 
 
 This is based on the fact that the SIEM (or other defensive tool) remembers the IP address that the TGT ticket was issued to. And then, when a TGS request is made, it compares the IP address of the device from which the TGS request was made to the device to which the TGT was issued. If the IP addresses are different, a Pass The Ticket attack is most likely being used.
 
